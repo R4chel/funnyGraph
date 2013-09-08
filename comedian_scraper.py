@@ -11,14 +11,21 @@ def clean(s):
 
 title = "Cardis Cardell Willis"
 
-val = wikipedia_utils.GetWikipediaPage(title)
-res = wikipedia_utils.ParseTemplates(val["text"])
-infobox_comedian = dict(res["templates"]).get("Infobox comedian")
-influences = infobox_comedian.get("influences")
-influenced = infobox_comedian.get("influenced")
-print clean(influences)
-print clean(influenced)
+def process(title): 
+    #check if title is in list
+    val = wikipedia_utils.GetWikipediaPage(title)
+    res = wikipedia_utils.ParseTemplates(val["text"])
+    infobox_comedian = dict(res["templates"]).get("Infobox comedian")
+    influences = clean(infobox_comedian.get("influences"))
+    influenced = clean(infobox_comedian.get("influenced"))
+    store(title, influences, influenced)
+    #add to list 
+    #iterate through influenced / influences
 
+def store(title, influences, influenced):
+    return    
+
+process(title)
 #print influences
 #print influenced
 #print infobox_comedian    # prints just the comedian infobox
